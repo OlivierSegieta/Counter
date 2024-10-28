@@ -31,7 +31,6 @@ namespace CounterSegieta
 
             _counterService.AddCounter(CounterNameEntry.Text, initialValue);
 
-            // Czyszczenie pól
             CounterNameEntry.Text = string.Empty;
             InitialValueEntry.Text = string.Empty;
         }
