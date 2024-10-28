@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CounterSegieta.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+            <Frame BorderColor="Gray" Padding="10" Margin="0,0,0,20">
+                <VerticalStackLayout Spacing="10">
+                    <Label 
+                        Text="Dodaj nowy licznik!" 
+                        FontSize="24" 
+                        HorizontalOptions="Center" />
+
+                    <Entry 
+                        x:Name="CounterNameEntry" 
+                        Placeholder="Nazwa licznika"
+                        />
+
+                    <Entry 
+                        x:Name="InitialValueEntry" 
+                        Placeholder="Wartość początkowa" 
+                        Keyboard="Numeric" />
+
+                    <Button 
+                        Text="Dodaj licznik" 
+                        Clicked="OnAddCounterClicked"
+                        BackgroundColor="BlueViolet"
+                        TextColor="White" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <CollectionView x:Name="CountersCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="0,5" BorderColor="LightGray">
+                            <Grid ColumnDefinitions="*,Auto,Auto,Auto" RowDefinitions="Auto,Auto">
+                                <Label 
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    Text="{Binding Name}" 
+                                    FontSize="18"
+                                    VerticalOptions="Center" />
+
+                                <Label 
+                                    Grid.Column="0"
+                                    Grid.Row="1"
+                                    Text="{Binding InitialValue, StringFormat='Wartość początkowa: {0}'}"
+                                    TextColor="Gray"
+                                    FontSize="14" />
+
+                                <Label 
+                                    Grid.Column="1"
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Text="{Binding Value}" 
+                                    FontSize="20"
+                                    VerticalOptions="Center"
+                                    Margin="10,0" />
+
+                                <Button 
+                                    BackgroundColor="BlueViolet"
+                                    Grid.Column="2"
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Text="+" 
+                                    Clicked="OnIncrementClicked" 
+                                    CommandParameter="{Binding .}"
+                                    Margin="5,0" />
+
+                                <Button 
+                                    BackgroundColor="BlueViolet"
+                                    Grid.Column="3"
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Text="-" 
+                                    Clicked="OnDecrementClicked" 
+                                    CommandParameter="{Binding .}" />
+                           <!-- <Button 
+                                    BackgroundColor="BlueViolet"
+                                    Grid.Column="3"
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Text="clear" 
+                                    Clicked="" 
+                                    CommandParameter="{Binding .}" /> -->
+                                
+                                
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
