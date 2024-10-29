@@ -55,8 +55,8 @@ public class CounterService
         {
             string path = Path.Combine(FileSystem.AppDataDirectory, FileName);
             var options = new JsonSerializerOptions { WriteIndented = true };
-            var json = JsonSerializer.Serialize(Counters.ToList(), options);
-            File.WriteAllText(path, json);
+            var txt = JsonSerializer.Serialize(Counters.ToList(), options);
+            File.WriteAllText(path, txt);
         }
         catch (Exception ex)
         {
