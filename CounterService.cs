@@ -1,9 +1,9 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Text.Json;
 
 public class CounterService
 {
-    private const string FileName = "counters.json";
+    private const string FileName = "counters.txt";
     public ObservableCollection<Counter> Counters { get; private set; }
 
     public CounterService()
