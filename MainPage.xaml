@@ -23,7 +23,7 @@
                         Keyboard="Numeric" />
 
                     <Button 
-                        Text="Dodaj licznik" 
+                        Text="Dodaj licznik"    
                         Clicked="OnAddCounterClicked"
                         BackgroundColor="BlueViolet"
                         TextColor="White" />
@@ -63,8 +63,8 @@
                                     Grid.Column="2"
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
-                                    Text="+" 
-                                    Clicked="OnIncrementClicked" 
+                                    Text="-" 
+                                    Clicked="OnDecrementClicked" 
                                     CommandParameter="{Binding .}"
                                     Margin="5,0" />
 
@@ -73,8 +73,8 @@
                                     Grid.Column="3"
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
-                                    Text="-" 
-                                    Clicked="OnDecrementClicked" 
+                                    Text="+" 
+                                    Clicked="OnIncrementClicked" 
                                     CommandParameter="{Binding .}" />
                            <!-- <Button 
                                     BackgroundColor="BlueViolet"
