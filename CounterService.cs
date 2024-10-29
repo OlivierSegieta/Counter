@@ -1,5 +1,5 @@
 using System.Collections.ObjectModel;
-using System.Text.Json;
+using System.IO;
 
 public class CounterService
 {
@@ -31,13 +31,15 @@ public class CounterService
             string path = Path.Combine(FileSystem.AppDataDirectory, FileName);
             if (File.Exists(path))
             {
-                var json = File.ReadAllText(path);
-                var counters = JsonSerializer.Deserialize<List<Counter>>(json);
-                if (counters != null)
+                var lines = File.ReadAllLines(path);
+                Counters.Clear();
+                foreach (var line in lines)
                 {
-                    Counters.Clear();
-                    foreach (var counter in counters)
+                    var parts = line.Split(',');
+                    if (parts.Length == 2 &&
+                        int.TryParse(parts[1], out int initialValue))
                     {
+                        var counter = new Counter(parts[0], initialValue);
                         Counters.Add(counter);
                     }
                 }
@@ -54,9 +56,14 @@ public class CounterService
         try
         {
             string path = Path.Combine(FileSystem.AppDataDirectory, FileName);
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            var txt = JsonSerializer.Serialize(Counters.ToList(), options);
-            File.WriteAllText(path, txt);
+            var lines = new List<string>();
+
+            foreach (var counter in Counters)
+            {
+                lines.Add($"{counter.Name},{counter.Value}");
+            }
+
+            File.WriteAllLines(path, lines);
         }
         catch (Exception ex)
         {
