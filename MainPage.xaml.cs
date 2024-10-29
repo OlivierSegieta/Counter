@@ -1,7 +1,3 @@
-﻿using Microsoft.Maui.Controls;
-using Microsoft.Maui.Storage;
-using System.Diagnostics.Metrics;
-
 namespace CounterSegieta
 {
     public partial class MainPage : ContentPage
@@ -19,13 +15,13 @@ namespace CounterSegieta
         {
             if (string.IsNullOrWhiteSpace(CounterNameEntry.Text))
             {
-                await DisplayAlert("Błąd", "Proszę podać nazwę licznika", "OK");
+                await DisplayAlert("Błąd", "Podaj nazwę licznika", "ok");
                 return;
             }
 
             if (!int.TryParse(InitialValueEntry.Text, out int initialValue))
             {
-                await DisplayAlert("Błąd", "Proszę podać prawidłową wartość początkową", "OK");
+                await DisplayAlert("Błąd", "Podaj prawidłową wartość licznika", "ok");
                 return;
             }
 
@@ -44,11 +40,6 @@ namespace CounterSegieta
             }
         }
 
-        private void Clear(object sender, EventArgs e)
-        {
-            
-        }
-
         private void OnDecrementClicked(object sender, EventArgs e)
         {
             if (sender is Button button && button.CommandParameter is Counter counter)
@@ -57,5 +48,10 @@ namespace CounterSegieta
                 _counterService.UpdateCounter(counter);
             }
         }
+        /*private void Clear(object sender, EventArgs e)
+        {
+            
+        }
+        */
     }
 }
